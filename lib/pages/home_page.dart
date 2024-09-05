@@ -11,6 +11,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final _controller = TextEditingController();
+
   // list of todo tasks
   List toDoList = [
     ["Aprender Flutter", false],
@@ -24,12 +26,25 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  // save new task
+    void saveNewTask() {
+      setState(() {
+        toDoList.add([
+          _controller.text,
+        ]);
+      });
+  }
+
   // method for creating new tasks
     void createNewTask() {
       showDialog(
         context: context, 
         builder: (context) {
-          return DialogBox();
+          return DialogBox(
+            controller: _controller,
+            onCancel: () => Navigator.of(context).pop(),
+            onSave: saveNewTask,
+          );
         });
   }
 
