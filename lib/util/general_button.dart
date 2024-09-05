@@ -1,5 +1,4 @@
-// ignore_for_file: must_be_immutable
-
+// ignore_for_file: must_be_immutable, prefer_const_constructors
 import 'package:flutter/material.dart';
 
 class GeneralButton extends StatelessWidget {
