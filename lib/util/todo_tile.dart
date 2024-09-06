@@ -22,7 +22,7 @@ class ToDoTile extends StatelessWidget {
       padding: const EdgeInsets.only(left: 25, top: 20, right: 25),
       child: Slidable(
         endActionPane: ActionPane(
-          motion: StretchMotion(), 
+          motion: StretchMotion(),
           children: [
             SlidableAction(
               onPressed: deleteFunction,
@@ -34,7 +34,6 @@ class ToDoTile extends StatelessWidget {
         ),
         child: Container(
           padding: EdgeInsets.all(16),
-          constraints: BoxConstraints(maxWidth: 500),
           decoration: BoxDecoration(
             color: Colors.amber,
             borderRadius: BorderRadius.circular(12),
@@ -47,21 +46,20 @@ class ToDoTile extends StatelessWidget {
                 onChanged: onChanged,
                 activeColor: Colors.purple,
                 checkColor: Colors.black,
-                ),
-              // nome da tarefa
-              Container(
-                constraints: BoxConstraints(maxWidth: 500),
+              ),
+              // Expanded widget to adapt the Text size
+              Expanded(
                 child: Text(
                   taskName,
-                  overflow: TextOverflow.ellipsis,
+                  overflow: TextOverflow.visible,  // Handles long text overflow
                   style: TextStyle(
                     decoration: taskCompleted 
-                    ? TextDecoration.lineThrough 
-                    : TextDecoration.none,
+                      ? TextDecoration.lineThrough 
+                      : TextDecoration.none,
                     fontFamily: 'Handjet',
                     fontSize: 28,
                     fontWeight: FontWeight.w500,
-                  ), 
+                  ),
                 ),
               ),
             ],
