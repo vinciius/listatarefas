@@ -13,20 +13,18 @@ class GeneralButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      child: MaterialButton(
-        onPressed: onPressed,
-        color: Colors.amber,
-        child: Text(
-          text,
-          style: TextStyle(
-            fontFamily: 'Rubik',
-            fontSize: 16,
-            fontWeight: FontWeight.w600
-          ),
-          ),  
-      ),
+    return MaterialButton(
+      onPressed: onPressed,
+      color: Colors.amber,
+      child: Text(
+        text,
+        style: TextStyle(
+          fontFamily: 'Rubik',
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          color: Colors.purple
+        ),
+        ),  
     );
   }
 }

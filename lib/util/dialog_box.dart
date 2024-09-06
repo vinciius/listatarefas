@@ -17,47 +17,45 @@ class DialogBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: Container(
-        color: Colors.yellow[400],
-        height: 200,
+      backgroundColor: Colors.yellowAccent.shade400,
+      content: SizedBox(
+        height: 150,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // get user input
             TextField(
               controller: controller,
               decoration: InputDecoration(
+                iconColor: Colors.purple,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(100),
+                  borderRadius: BorderRadius.circular(14),
                 ),
                 hintText: "Digite uma nova tarefa",
                 hintStyle: TextStyle(
+                  color: Colors.purple.withOpacity(.4),
                   fontFamily: 'Handjet',
                   fontSize: 20,
-                  fontWeight: FontWeight.w300,
+                  fontWeight: FontWeight.w100,
                 ),
               ),
             ),
-  
             // buttons: save + cancel
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // save button
-                  GeneralButton(
-                    text: 'Salvar', 
-                    onPressed: onSave,
-                    ),
-                
-                  // cancel button
-                  GeneralButton(
-                    text: 'Cancelar', 
-                    onPressed: onCancel,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // save button
+                GeneralButton(
+                  text: 'Salvar', 
+                  onPressed: onSave,
                   ),
-                ],
-              ),
+              
+                // cancel button
+                GeneralButton(
+                  text: 'Cancelar', 
+                  onPressed: onCancel,
+                ),
+              ],
             ),
           ],
         ),
