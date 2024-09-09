@@ -6,11 +6,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 void main() async {
   // initializes hive
   await Hive.initFlutter();
-
   // open a box 
   // ignore: unused_local_variable
   var box = await Hive.openBox('mybox');
-
   
   runApp(const MyApp());
 }
