@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, must_be_immutable
 import 'package:flutter/material.dart';
-import 'package:todo_app/util/general_button.dart';
+import 'package:listatarefas/util/general_button.dart';
 
 class DialogBox extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables

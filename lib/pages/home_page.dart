@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:todo_app/data/database.dart';
-import 'package:todo_app/util/dialog_box.dart';
-import 'package:todo_app/util/todo_tile.dart';
+import 'package:listatarefas/data/database.dart';
+import 'package:listatarefas/util/dialog_box.dart';
+import 'package:listatarefas/util/todo_tile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
