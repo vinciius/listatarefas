@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:listatarefas/pages/default_page.dart';
 import 'package:listatarefas/pages/intro_page.dart';
 import 'package:listatarefas/pages/notes_page.dart';
 
@@ -16,13 +17,15 @@ class _HomePageState extends State<HomePage> {
   Widget _getSelectedPage() {
     switch (_selectedIndex) {
       case 0:
-        return NotesPage();
+      return DefaultPage();
       case 1:
-        return IntroPage();
+        return NotesPage();
       case 2:
+        return IntroPage();
+      case 3:
         return Center(child: Text('Settings Page'));
       default:
-        return NotesPage(); 
+        return DefaultPage(); 
     }
   }
 
@@ -45,16 +48,30 @@ class _HomePageState extends State<HomePage> {
         shadowColor: Colors.deepOrange,
         color: Colors.yellow,
         child: BottomNavigationBar(
+          type: BottomNavigationBarType.shifting,
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
-          items: const [
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+                size: 22,
+                color: Colors.orange,
+                ),
+              label: 'Home',
+              activeIcon: Icon(
+                Icons.home_outlined,
+                size: 22,
+                color: Colors.orange,
+                ),
+            ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.note,
                 size: 22,
                 color: Colors.orange,
                 ),
-              label: 'Notes',
+              label: 'Notas',
               activeIcon: Icon(
                 Icons.note_outlined,
                 size: 22,
@@ -63,13 +80,13 @@ class _HomePageState extends State<HomePage> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.star,
+                Icons.shop,
                 size: 22, 
                 color: Colors.orange,
                 ),
-              label: 'Favorites',
+              label: 'Loja',
               activeIcon: Icon(
-                Icons.star_border_outlined,
+                Icons.shop_outlined,
                 size: 22,
                 color: Colors.orange,
                 ),
