@@ -1,9 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:listatarefas/data/database.dart';
-import 'package:listatarefas/util/dialog_box.dart';
-import 'package:listatarefas/util/todo_tile.dart';
+import 'package:listatarefas/pages/intro_page.dart';
+import 'package:listatarefas/pages/notes_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,98 +11,85 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // reference to the hive box
-  final _myBox = Hive.box('mybox');
-  ToDoDataBase db = ToDoDataBase();
+  int _selectedIndex = 0;
 
-  @override
-  void initState() {
-    // if this is the first time ever running the app, create default data
-    if (_myBox.get("TODOLIST") == null) {
-      db.createInitialData();
-    } else {
-      // there already exists data
-      db.loadData();
+  Widget _getSelectedPage() {
+    switch (_selectedIndex) {
+      case 0:
+        return NotesPage();
+      case 1:
+        return IntroPage();
+      case 2:
+        return Center(child: Text('Settings Page'));
+      default:
+        return NotesPage(); 
     }
-
-    super.initState();
   }
 
-  // text editing controller
-  final _controller = TextEditingController();
-
-  // checkbox was tapped
-  void checkBoxChanged(bool? value, int index) {
+  // This method will handle bottom navigation tap.
+  void _onItemTapped(int index) {
     setState(() {
-      db.toDoList[index][1] = !db.toDoList[index][1];
+      _selectedIndex = index;
     });
-    db.updateDataBase();
-  }
-
-  // save new task
-  void saveNewTask() {
-    setState(() {
-      db.toDoList.add([ _controller.text, false,]);
-      _controller.clear();      
-    });
-    Navigator.of(context).pop();
-    db.updateDataBase();
-  }
-
-  // method for creating new tasks
-  void createNewTask() {
-    showDialog(
-      context: context, 
-      builder: (context) {
-        return DialogBox(
-          controller: _controller,
-          onCancel: () => Navigator.of(context).pop(),
-          onSave: saveNewTask,
-        );
-      });
-    }
-
-  // method for deleting tasks
-  void deleteTask (int index) {
-    setState(() {
-      db.toDoList.removeAt(index);
-    });
-    db.updateDataBase();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.yellow[100],
-      appBar: AppBar(
-        backgroundColor: Colors.yellow,
-        title: Center(
-          child: Text(
-            'TAREFAS E NOTAS 📋',
-            style: TextStyle(
-              fontFamily: 'Handjet',
-              fontSize: 36,
-              fontWeight: FontWeight.w500,
+      body: SafeArea(
+        // Displays content based on selected bottom nav item
+        child: _getSelectedPage(), 
+      ),
+      bottomNavigationBar: BottomAppBar(
+        surfaceTintColor: Colors.deepOrange,
+        shadowColor: Colors.deepOrange,
+        color: Colors.yellow,
+        child: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.note,
+                size: 22,
+                color: Colors.orange,
+                ),
+              label: 'Notes',
+              activeIcon: Icon(
+                Icons.note_outlined,
+                size: 22,
+                color: Colors.orange,
+                ),
             ),
-          ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.star,
+                size: 22, 
+                color: Colors.orange,
+                ),
+              label: 'Favorites',
+              activeIcon: Icon(
+                Icons.star_border_outlined,
+                size: 22,
+                color: Colors.orange,
+                ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.settings,
+                size: 22,
+                color: Colors.orange,
+                ),
+              label: 'Settings',
+              activeIcon: Icon(
+                Icons.settings_outlined,
+                size: 22,
+                color: Colors.orange,
+                ),
+            ),
+          ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: createNewTask,
-        backgroundColor: Colors.yellow,
-        child: Icon(Icons.add),
-      ),
-      body: ListView.builder(
-        itemCount: db.toDoList.length, 
-        itemBuilder: (context, index) {
-          return ToDoTile(
-            taskName: db.toDoList[index] [0], 
-            taskCompleted: db.toDoList[index] [1], 
-            onChanged: (value) => checkBoxChanged(value, index),
-            deleteFunction: (context) => deleteTask(index),
-            );
-          },
-        ),
     );
   }
 }
