@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:listatarefas/pages/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -22,7 +23,19 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: HomePage(),
       theme: ThemeData(
-        primarySwatch: Colors.yellow),
+        primarySwatch: Colors.green,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.green,
+          centerTitle: true,
+          elevation: 10,
+          shadowColor: Colors.black,
+          titleTextStyle: GoogleFonts.handjet(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.red,
+          ),
+        ),
+      ),
     );
   }
 }

@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
           type: BottomNavigationBarType.shifting,
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,

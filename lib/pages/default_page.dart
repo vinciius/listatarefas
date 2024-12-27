@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DefaultPage extends StatelessWidget {
   const DefaultPage({super.key});
@@ -7,29 +8,21 @@ class DefaultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow,
         title: const Center(
           child: Text(
-            'PÁGINA MODELO 📓',
+            'Página Inicial',
             style: TextStyle(
-              fontFamily: 'Handjet',
               fontSize: 36,
-              fontWeight: FontWeight.w500,
             ),
           ),
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(10),
-        child: Text(
-          'Essa página é o esqueleto da página principal.',
-          style: TextStyle(
-            fontFamily: 'Handjet',
-            fontSize: 30,
-            fontWeight: FontWeight.bold
+        padding: const EdgeInsets.all(10),
+        child: Center(
+
           ),
         ),
-      ),
-    );
+      );
   }
 }
